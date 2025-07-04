@@ -3,6 +3,7 @@ import "./App.css";
 import { items, itemPrices, itemSizes } from "../public/data";
 import { FaAngleUp, FaAngleDown } from "react-icons/fa6";
 import { PiArrowArcLeftBold } from "react-icons/pi";
+import PizzaComponent from "./components/PizzaComponent";
 
 interface SizeState {
   sizeId: number;
@@ -43,7 +44,7 @@ function App() {
   });
 
   const [activeItemId, setActiveItemId] = useState<number | null>(() => {
-    const stored = localStorage.getItem('activeItemId');
+    const stored = localStorage.getItem("activeItemId");
     return stored !== null ? parseInt(stored, 10) : null;
   });
   const [initialData] = useState<MenuItemState[]>(buildInitialData());
@@ -52,15 +53,13 @@ function App() {
     localStorage.setItem("menuItems", JSON.stringify(menuItems));
   }, [menuItems]);
 
-
   useEffect(() => {
     if (activeItemId !== null) {
-      localStorage.setItem('activeItemId', activeItemId.toString());
+      localStorage.setItem("activeItemId", activeItemId.toString());
     } else {
-      localStorage.removeItem('activeItemId');
+      localStorage.removeItem("activeItemId");
     }
   }, [activeItemId]);
-
 
   const handleActiveItem = (itemId: number): void => {
     if (itemId === activeItemId) {
@@ -136,63 +135,16 @@ function App() {
     <section className="menu">
       <h2>Pizza</h2>
       {menuItems.map((item) => (
-        <section className="accordion-item" key={item.itemId}>
-          <button
-            className={`accordion-btn ${
-              activeItemId === item.itemId ? "active" : ""
-            }`}
-            onClick={() => handleActiveItem(item.itemId)}
-          >
-            {activeItemId === item.itemId ? (
-              <FaAngleUp className="btn-icon" />
-            ) : (
-              <FaAngleDown className="btn-icon" />
-            )}
-            {item.name}
-          </button>
-          {activeItemId === item.itemId && (
-            <div className="pizza-container">
-              {item.sizes.map((size) => (
-                <div key={size.sizeId} className="size-row">
-                  <input
-                    type="checkbox"
-                    id={`size ${item.itemId} ${size.sizeId}`}
-                    checked={size.enabled}
-                    onChange={() => handleToggleSize(item.itemId, size.sizeId)}
-                  />
-                  <label
-                    className="check-label"
-                    htmlFor={`size ${item.itemId} ${size.sizeId}`}
-                  >
-                    {" "}
-                    {size.sizeName}{" "}
-                  </label>
-                  <div className="input-container">
-                    <label>$ </label>
-
-                    <input
-                      type="number"
-                      disabled={!size.enabled}
-                      value={size.price}
-                      onChange={(e) =>
-                        handlePriceChange(
-                          item.itemId,
-                          size.sizeId,
-                          parseFloat(e.target.value)
-                        )
-                      }
-                    />
-                  </div>
-                </div>
-              ))}
-              {hasChanges(item) && (
-                <button className="undo-btn" onClick={handleUndo}>
-                  <PiArrowArcLeftBold />
-                </button>
-              )}
-            </div>
-          )}
-        </section>
+        <PizzaComponent
+          key={item.itemId}
+          item={item}
+          activeItemId={activeItemId}
+          handleActiveItem={handleActiveItem}
+          handleToggleSize={handleToggleSize}
+          handlePriceChange={handlePriceChange}
+          hasChanges={hasChanges}
+          handleUndo={handleUndo}
+        />
       ))}
     </section>
   );
