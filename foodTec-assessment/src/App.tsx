@@ -72,28 +72,29 @@ function App() {
     const initialPrice = initialItem?.sizes.find(
       (item) => item.sizeId === sizeId
     );
-    const newMenuItems = menuItems.map((item) => {
-      if (item.itemId === itemId) {
-        return {
-          ...item,
-          sizes: item.sizes.map((size) => {
-            if (size.sizeId === sizeId && size.price !== 0.0) {
-              return { ...size, enabled: !size.enabled, price: 0.0 };
-            } else if (size.sizeId === sizeId && size.price == 0.0) {
-              return {
-                ...size,
-                enabled: !size.enabled,
-                price: initialPrice?.price,
-              };
-            } else {
-              return size;
-            }
-          }),
-        };
-      }
-      return item;
-    });
-    setMenuItems(newMenuItems);
+    setMenuItems((prev) =>
+      prev.map((item) => {
+        if (item.itemId === itemId) {
+          return {
+            ...item,
+            sizes: item.sizes.map((size) => {
+              if (size.sizeId === sizeId && size.price !== 0.0) {
+                return { ...size, enabled: !size.enabled, price: 0.0 };
+              } else if (size.sizeId === sizeId && size.price == 0.0) {
+                return {
+                  ...size,
+                  enabled: !size.enabled,
+                  price: initialPrice?.price ?? 0,
+                };
+              } else {
+                return size;
+              }
+            }),
+          };
+        }
+        return item;
+      })
+    );
   };
 
   const handlePriceChange = (
