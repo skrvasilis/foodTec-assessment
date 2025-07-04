@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import { items, itemPrices, itemSizes } from "../public/data";
-import { FaAngleUp, FaAngleDown } from "react-icons/fa6";
-import { PiArrowArcLeftBold } from "react-icons/pi";
 import PizzaComponent from "./components/PizzaComponent";
 
 interface SizeState {
