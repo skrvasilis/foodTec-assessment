@@ -126,8 +126,15 @@ function App() {
     return JSON.stringify(item) !== JSON.stringify(initialItem);
   };
 
-  const handleUndo = (): void => {
-    setMenuItems(initialData);
+  const handleUndo = (itemId: number): void => {
+    setMenuItems((prev) =>
+      prev.map((item) => {
+        if (item.itemId === itemId) {
+          return initialData.find((initial) => initial.itemId === itemId) || item;
+        }
+        return item;
+      })
+    );
   };
 
   return (
