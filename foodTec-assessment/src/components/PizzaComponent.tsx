@@ -18,6 +18,9 @@ const PizzaComponent: React.FC<PizzaComponentProps> = ({
           activeItemId === item.itemId ? "active" : ""
         }`}
         onClick={() => handleActiveItem(item.itemId)}
+        aria-expanded={activeItemId === item.itemId}
+        aria-controls={`item-panel-${item.itemId}`}
+        id={`item-button-${item.itemId}`}
       >
         {activeItemId === item.itemId ? (
           <FaAngleUp className="btn-icon" />
@@ -27,24 +30,31 @@ const PizzaComponent: React.FC<PizzaComponentProps> = ({
         {item.name}
       </button>
       {activeItemId === item.itemId && (
-        <div className="pizza-container">
+        <div
+          className="pizza-container"
+          id={`item-panel-${item.itemId}`}
+          role="region"
+          aria-labelledby={`item-button-${item.itemId}`}
+        >
           {item.sizes.map((size) => (
             <div key={size.sizeId} className="size-row">
               <input
                 type="checkbox"
-                id={`size ${item.itemId} ${size.sizeId}`}
+                id={`size ${item.itemId}-${size.sizeId}`}
                 checked={size.enabled}
                 onChange={() => handleToggleSize(item.itemId, size.sizeId)}
               />
               <label
                 className="check-label"
-                htmlFor={`size ${item.itemId} ${size.sizeId}`}
+                htmlFor={`size ${item.itemId}-${size.sizeId}`}
               >
                 {" "}
                 {size.sizeName}{" "}
               </label>
               <div className="input-container">
-                <label>$ </label>
+                <label aria-label={`Price for ${size.sizeName} ${item.name}`}>
+                  ${" "}
+                </label>
 
                 <input
                   type="number"
@@ -64,6 +74,7 @@ const PizzaComponent: React.FC<PizzaComponentProps> = ({
             <button
               className="undo-btn"
               onClick={() => handleUndo(item.itemId)}
+              aria-label={`Undo changes to ${item.name}`}
             >
               <PiArrowArcLeftBold />
             </button>
