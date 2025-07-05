@@ -2,19 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import { items, itemPrices, itemSizes } from "../public/data";
 import PizzaComponent from "./components/PizzaComponent";
-
-interface SizeState {
-  sizeId: number;
-  sizeName: string;
-  price: number;
-  enabled: boolean;
-}
-
-interface MenuItemState {
-  itemId: number;
-  name: string;
-  sizes: SizeState[];
-}
+import type { MenuItemState } from "./types";
 
 function buildInitialData(): MenuItemState[] {
   return items.map((item) => {
@@ -78,13 +66,13 @@ function App() {
           return {
             ...item,
             sizes: item.sizes.map((size) => {
-              if (size.sizeId === sizeId && size.price !== 0.0) {
-                return { ...size, enabled: !size.enabled, price: 0.0 };
-              } else if (size.sizeId === sizeId && size.price == 0.0) {
+              if (size.sizeId === sizeId && size.enabled === true) {
+                return { ...size, enabled: false, price: 0.0 };
+              } else if (size.sizeId === sizeId && size.enabled === false) {
                 return {
                   ...size,
-                  enabled: !size.enabled,
-                  price: initialPrice?.price ?? 0,
+                  enabled: true,
+                  price: initialPrice?.price || 0,
                 };
               } else {
                 return size;
@@ -102,6 +90,7 @@ function App() {
     sizeId: number,
     price: number
   ): void => {
+    console.log(price);
     const newMenuItems = menuItems.map((item) => {
       if (item.itemId === itemId) {
         return {
@@ -130,7 +119,9 @@ function App() {
     setMenuItems((prev) =>
       prev.map((item) => {
         if (item.itemId === itemId) {
-          return initialData.find((initial) => initial.itemId === itemId) || item;
+          return (
+            initialData.find((initial) => initial.itemId === itemId) || item
+          );
         }
         return item;
       })

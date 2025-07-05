@@ -1,28 +1,6 @@
 import { FaAngleUp, FaAngleDown } from "react-icons/fa6";
 import { PiArrowArcLeftBold } from "react-icons/pi";
-
-interface SizeState {
-  sizeId: number;
-  sizeName: string;
-  price: number;
-  enabled: boolean;
-}
-
-interface MenuItemState {
-  itemId: number;
-  name: string;
-  sizes: SizeState[];
-}
-
-interface PizzaComponentProps {
-  item: MenuItemState;
-  activeItemId: number | null;
-  handleActiveItem: (id: number) => void;
-  handleToggleSize: (itemId: number, sizeId: number) => void;
-  handlePriceChange: (itemId: number, sizeId: number, price: number) => void;
-  hasChanges: (item: MenuItemState) => boolean;
-  handleUndo: (itemId: number) => void;
-}
+import type { PizzaComponentProps } from "../types.ts";
 
 const PizzaComponent: React.FC<PizzaComponentProps> = ({
   item,
@@ -70,15 +48,14 @@ const PizzaComponent: React.FC<PizzaComponentProps> = ({
 
                 <input
                   type="number"
+                  min={0}
                   disabled={!size.enabled}
-                  value={size.price.toFixed(2)}
-                  onChange={(e) =>
-                    handlePriceChange(
-                      item.itemId,
-                      size.sizeId,
-                      parseFloat(e.target.value)
-                    )
-                  }
+                  value={size.price}
+                  onChange={(e) => {
+                    const value =
+                      e.target.value === "" ? 0 : parseFloat(e.target.value);
+                    handlePriceChange(item.itemId, size.sizeId, value);
+                  }}
                 />
               </div>
             </div>
