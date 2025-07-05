@@ -34,10 +34,6 @@ function App() {
     return stored !== null ? parseInt(stored, 10) : null;
   });
   const [initialData] = useState<MenuItemState[]>(buildInitialData());
-  const [previousData, setPreviousData] = useState<MenuItemState[]>(() => {
-    const saved = localStorage.getItem("prevData");
-    return saved ? JSON.parse(saved) : [];
-  });
 
   useEffect(() => {
     localStorage.setItem("menuItems", JSON.stringify(menuItems));
