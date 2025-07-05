@@ -62,8 +62,7 @@ const PizzaComponent: React.FC<PizzaComponentProps> = ({
                   disabled={!size.enabled}
                   value={size.price}
                   onChange={(e) => {
-                    const value =
-                      e.target.value === "" ? 0 : parseFloat(e.target.value);
+                    const value = parseFloat(e.target.value);
                     handlePriceChange(item.itemId, size.sizeId, value);
                   }}
                 />

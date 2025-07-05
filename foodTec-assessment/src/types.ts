@@ -3,6 +3,7 @@ export interface SizeState {
     sizeName: string;
     price: number;
     enabled: boolean;
+    previousPrice? : number;
   }
   
   export interface MenuItemState {
