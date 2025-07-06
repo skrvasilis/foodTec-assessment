@@ -11,8 +11,7 @@ depicts a part of an online ordering menu.
 - User can edit the price (only numbers are allowed). Price changes **persist after page refresh**
 - Each item card has an "Undo" button/function, which is **only displayed** if the user has made any changes to item since the app initialized. When clicked, the selected item's state reverts to the initial one (**what we had when the page first loaded**)
 
-Given the data and their models:
-[data.ts](./data.ts)
+Given the data and their models: data.ts
 
 1. Create a new public repository in Github
 2. Build a web app that matches the above design and functionality described above, using the available data
