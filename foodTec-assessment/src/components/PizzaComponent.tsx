@@ -69,6 +69,7 @@ const PizzaComponent: React.FC<PizzaComponentProps> = ({
               </div>
             </div>
           ))}
+
           {hasChanges(item) && (
             <button
               className="undo-btn"

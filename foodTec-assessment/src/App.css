@@ -6,7 +6,7 @@
 
 :root {
   --primary-color: #6f91a9;
-  
+
 }
 
 body {
@@ -55,6 +55,7 @@ h2 {
   flex-wrap       : wrap;
   position        : relative;
   border-radius   : 0 0 0.75rem 0.75rem;
+
 }
 
 .size-row {
@@ -80,24 +81,24 @@ h2 {
 
 
 .input-container label {
-  background-color: var(--primary-color);
-  padding         : 12px 8px;
-  color           : white;
-  font-size       : 1.5rem;
-  border-top-left-radius: 5px;
-border-bottom-left-radius: 5px;
+  background-color         : var(--primary-color);
+  padding                  : 12px 8px;
+  color                    : white;
+  font-size                : 1.5rem;
+  border-top-left-radius   : 5px;
+  border-bottom-left-radius: 5px;
 
 
 }
 
 .size-row input[type="number"] {
-  border    : 2px solid var(--primary-color);
-  text-align: center;
-  width     : 80px;
-  padding   : 5px;
-  outline   : none;
-  font-size : 1.5rem;
-  border-top-right-radius: 5px;
+  border                    : 2px solid var(--primary-color);
+  text-align                : center;
+  width                     : 80px;
+  padding                   : 5px;
+  outline                   : none;
+  font-size                 : 1.5rem;
+  border-top-right-radius   : 5px;
   border-bottom-right-radius: 5px;
 
 }

@@ -17,6 +17,7 @@ function buildInitialData(): MenuItemState[] {
           sizeName: size.name,
           price: priceEntry?.price ?? 0,
           enabled: true,
+          previousPrice: 0,
         };
       }),
     };
@@ -56,11 +57,6 @@ function App() {
   };
 
   const handleToggleSize = (itemId: number, sizeId: number): void => {
-    // const initialItem = initialData.find((item) => item.itemId === itemId);
-    // const initialPrice = initialItem?.sizes.find(
-    //   (item) => item.sizeId === sizeId
-    // );
-
     setMenuItems((prev) =>
       prev.map((item) => {
         if (item.itemId === itemId) {
@@ -71,7 +67,7 @@ function App() {
                 return {
                   ...size,
                   enabled: false,
-                  price: 0.0,
+                  price: 0,
                   previousPrice: size.price,
                 };
               } else if (size.sizeId === sizeId && size.enabled === false) {
@@ -79,6 +75,7 @@ function App() {
                   ...size,
                   enabled: true,
                   price: size.previousPrice || 0,
+                  previousPrice: 0,
                 };
               } else {
                 return size;
