@@ -30,12 +30,9 @@ Given the data and their models:
 8. Try to use best practices as you would always do. Don't focus only on functionality or styling only
 
 ## To run the code :
-
-1. Clone the repository
-2. go to the foodTec-assessment folder:
+Clone the repository
 
 ```bash
-cd foodTec-assessment
 npm install
 npm run dev
 ```
