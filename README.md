@@ -35,3 +35,6 @@ Clone the repository and then
 npm install
 npm run dev
 ```
+## live Version : 
+
+https://food-tec-assessment.vercel.app/
