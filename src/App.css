@@ -1,0 +1,138 @@
+* {
+  margin    : 0;
+  padding   : 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #6f91a9;
+
+}
+
+body {
+  padding: 2rem;
+
+}
+
+h2 {
+  font-size    : 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.accordion-item {
+  border       : 1px solid #efdede;
+  margin-bottom: 8px;
+  border-radius: 7px;
+  box-shadow   : 7px 7px 5px rgb(220, 218, 218);
+}
+
+.accordion-btn {
+  background : none;
+  padding    : 16px;
+  display    : flex;
+  align-items: center;
+  width      : 100%;
+  font-size  : 1.2rem;
+  border     : none;
+  cursor     : pointer;
+}
+
+.btn-icon {
+  margin-right: 8px;
+}
+
+.active {
+  background-color: #e3f0f8;
+}
+
+.pizza-wrapper {
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.5s ease, opacity 0.3s ease;
+}
+
+.pizza-wrapper.open {
+  max-height: 400px;
+  opacity: 1;
+}
+
+.pizza-container {
+  background-color: #e3f0f8;
+  padding         : 1rem 1rem 2rem 2rem;
+  display         : flex;
+  justify-content : flex-start;
+  align-items     : flex-start;
+  gap             : 2rem;
+  flex-wrap       : wrap;
+  position        : relative;
+  border-radius   : 0 0 0.75rem 0.75rem;
+}
+
+.size-row {
+  display       : flex;
+  flex-direction: column;
+  align-items   : center;
+  gap           : 0.5rem;
+}
+
+.size-row input[type="checkbox"] {
+  width       : 30px;
+  height      : 30px;
+  accent-color: var(--primary-color);
+}
+
+.check-label {
+  font-size: 1.2rem;
+}
+
+.input-container {
+  display: flex;
+}
+
+
+.input-container label {
+  background-color         : var(--primary-color);
+  padding                  : 12px 8px;
+  color                    : white;
+  font-size                : 1.5rem;
+  border-top-left-radius   : 5px;
+  border-bottom-left-radius: 5px;
+
+
+}
+
+.size-row input[type="number"] {
+  border                    : 2px solid var(--primary-color);
+  text-align                : center;
+  width                     : 80px;
+  padding                   : 5px;
+  outline                   : none;
+  font-size                 : 1.5rem;
+  border-top-right-radius   : 5px;
+  border-bottom-right-radius: 5px;
+
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin            : 0;
+}
+
+.undo-btn {
+
+  position       : absolute;
+  font-size      : 1.7rem;
+  bottom         : 10px;
+  right          : 12px;
+  border         : 1px solid var(--primary-color);
+  background     : white;
+  color          : var(--primary-color);
+  border-radius  : 50%;
+  padding        : 0.4rem;
+  cursor         : pointer;
+  display        : flex;
+  align-items    : center;
+  justify-content: center;
+
+}

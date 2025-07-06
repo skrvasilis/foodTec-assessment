@@ -39,7 +39,3 @@ cd foodTec-assessment
 npm install
 npm run dev
 ```
-
-## live version :
-
-https://food-tec-assessment-756p3ogoh-skrvasilis-projects.vercel.app/]
