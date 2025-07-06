@@ -36,5 +36,6 @@ npm install
 npm run dev
 ```
 ## live Version : 
+<a href="https://food-tec-assessment.vercel.app/" target="_blank">https://food-tec-assessment.vercel.app</a>
 
-https://food-tec-assessment.vercel.app/
+
